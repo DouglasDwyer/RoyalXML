@@ -70,7 +70,7 @@ namespace RoyalXML
                     {
                         writer.WriteStartElement("ArrayElement");
                         object subObject = dataArray.GetValue(OneDimensionToLDimensions(i, rank));
-                        if (!arrayType.IsValueType && arrayType != typeof(string))
+                        if (!arrayType.IsValueType)
                         {
                             writer.WriteAttributeString("type", GetShortTypeName(subObject, typeDictionary));
                         }
@@ -105,7 +105,7 @@ namespace RoyalXML
                         }
                         writer.WriteStartElement(field.Name);
                         object value = field.GetValue(data);
-                        if (!IsTypeStringConvertable(field.FieldType))
+                        if (!field.FieldType.IsValueType)
                         {
                             writer.WriteAttributeString("type", GetShortTypeName(value, typeDictionary));
                         }
@@ -222,21 +222,20 @@ namespace RoyalXML
 
         private static object LoadObject(XElement currentDocument, Type fieldType, Dictionary<string, Type> typeDictionary)
         {
-            XAttribute attribute = currentDocument.Attribute("type");
-            if(attribute == null)
+            if(IsTypeStringConvertable(fieldType))
             {
                 return StringToValueType(currentDocument.Value, fieldType);
             }
             else
             {
-                string expectedType = attribute.Value;
-                if (expectedType == "null")
+                XAttribute attribute = currentDocument.Attribute("type");
+                if (attribute != null && attribute.Value == "null")
                 {
                     return null;
                 }
                 else
                 {
-                    Type type = typeDictionary[expectedType];
+                    Type type = attribute is null ? fieldType : typeDictionary[attribute.Value];
                     if (IsTypeStringConvertable(type))
                     {
                         return StringToValueType(currentDocument.Value, type);
