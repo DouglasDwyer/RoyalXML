@@ -50,7 +50,7 @@ namespace RoyalXML
                 return;
             }
             Type dataType = data.GetType();
-            if(data.GetType().IsValueType || data is string)
+            if(IsTypeStringConvertable(dataType))
             {
                 writer.WriteString(data.ToString());
             }
@@ -105,7 +105,7 @@ namespace RoyalXML
                         }
                         writer.WriteStartElement(field.Name);
                         object value = field.GetValue(data);
-                        if (!field.FieldType.IsValueType && field.FieldType != typeof(string))
+                        if (!IsTypeStringConvertable(field.FieldType))
                         {
                             writer.WriteAttributeString("type", GetShortTypeName(value, typeDictionary));
                         }
@@ -114,6 +114,11 @@ namespace RoyalXML
                     }
                 }
             }
+        }
+
+        private static bool IsTypeStringConvertable(Type type)
+        {
+            return type.IsPrimitive || type == typeof(string) || type == typeof(Guid) || type == typeof(DateTime) || type == typeof(TimeSpan) || type == typeof(DateTimeOffset);
         }
 
         private static int[] GetRanks(Array array)
@@ -232,7 +237,7 @@ namespace RoyalXML
                 else
                 {
                     Type type = typeDictionary[expectedType];
-                    if (type.IsPrimitive || type == typeof(string))
+                    if (IsTypeStringConvertable(type))
                     {
                         return StringToValueType(currentDocument.Value, type);
                     }
@@ -285,10 +290,12 @@ namespace RoyalXML
 
         private static object StringToValueType(string data, Type type)
         {
-            if (type == typeof(string)) {
+            if (type == typeof(string))
+            {
                 return data;
             }
-            else if (type.IsPrimitive) {
+            else if (type.IsPrimitive)
+            {
                 if (type == typeof(bool))
                     return bool.Parse(data);
                 else if (type == typeof(byte))
@@ -317,9 +324,15 @@ namespace RoyalXML
                     return ushort.Parse(data);
             }
             else if (type.IsEnum)
-            {
                 return Enum.Parse(type, data);
-            }
+            else if (type == typeof(Guid))
+                return Guid.Parse(data);
+            else if (type == typeof(DateTime))
+                return DateTime.Parse(data);
+            else if (type == typeof(DateTimeOffset))
+                return DateTimeOffset.Parse(data);
+            else if (type == typeof(TimeSpan))
+                return TimeSpan.Parse(data);
             throw new InvalidOperationException("The program has reached an unsupported state.");
         }
 
