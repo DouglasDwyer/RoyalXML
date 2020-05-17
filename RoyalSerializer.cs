@@ -263,7 +263,8 @@ namespace RoyalXML
 
                         foreach (XElement element in currentDocument.Elements())
                         {
-                            if(element.Name == "ICollectionData" && element.Attribute("data").Value == "ICollection")
+                            XAttribute dataAttribute = element.Attribute("data");
+                            if(element.Name == "ICollectionData" && dataAttribute != null && element.Attribute("data").Value == "ICollection")
                             {
                                 Type collectionType = type.GetInterfaces().Where(generic => generic.IsGenericType && generic.GetGenericTypeDefinition() == typeof(ICollection<>)).Single();
                                 Array data = (Array)LoadObject(element, collectionType.GetGenericArguments()[0], typeDictionary);
