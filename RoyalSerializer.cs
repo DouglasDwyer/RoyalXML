@@ -118,7 +118,7 @@ namespace RoyalXML
 
         private static bool IsTypeStringConvertable(Type type)
         {
-            return type.IsPrimitive || type == typeof(string) || type == typeof(Guid) || type == typeof(DateTime) || type == typeof(TimeSpan) || type == typeof(DateTimeOffset);
+            return type.IsPrimitive || type.IsEnum || type == typeof(string) || type == typeof(Guid) || type == typeof(DateTime) || type == typeof(TimeSpan) || type == typeof(DateTimeOffset);
         }
 
         private static int[] GetRanks(Array array)
@@ -178,10 +178,9 @@ namespace RoyalXML
                 return "null";
             }
             Type dataType = type.GetType();
-            string typeName = null;
             if (typeDictionary.ContainsKey(dataType))
             {
-                typeName = typeDictionary[dataType];
+                return typeDictionary[dataType];
             }
             else if(typeDictionary.ContainsValue(dataType.Name))
             {
@@ -190,14 +189,12 @@ namespace RoyalXML
                 {
                     i++;
                 }
-                typeDictionary[dataType] = dataType.Name + i;
+                return typeDictionary[dataType] = dataType.Name + i;
             }
             else
             {
-                typeName = dataType.Name;
-                typeDictionary[dataType] = typeName;
+                return typeDictionary[dataType] = dataType.Name;
             }
-            return typeName;
         }
 
         /// <summary>
@@ -222,7 +219,7 @@ namespace RoyalXML
 
         private static object LoadObject(XElement currentDocument, Type fieldType, Dictionary<string, Type> typeDictionary)
         {
-            if(IsTypeStringConvertable(fieldType))
+            if(IsTypeStringConvertable(fieldType) && !currentDocument.HasElements)
             {
                 return StringToValueType(currentDocument.Value, fieldType);
             }
