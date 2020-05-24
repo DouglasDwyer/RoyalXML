@@ -264,7 +264,7 @@ namespace RoyalXML
                             if(element.Name == "ICollectionData" && dataAttribute != null && element.Attribute("data").Value == "ICollection")
                             {
                                 Type collectionType = type.GetInterfaces().Where(generic => generic.IsGenericType && generic.GetGenericTypeDefinition() == typeof(ICollection<>)).Single();
-                                Array data = (Array)LoadObject(element, collectionType.GetGenericArguments()[0], typeDictionary);
+                                Array data = (Array)LoadObject(element, Array.CreateInstance(collectionType.GetGenericArguments()[0], 0).GetType(), typeDictionary);
                                 for(int i = 0; i < data.Length; i++)
                                 {
                                     collectionType.GetMethod("Add").Invoke(toReturn, new object[] { data.GetValue(i) });
