@@ -78,6 +78,24 @@ namespace RoyalXML
                         writer.WriteEndElement();
                     }
                 }
+                else if(dataType.IsGenericType && dataType.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
+                {
+                    writer.WriteStartElement("Key");
+                    object key = dataType.GetProperty("Key").GetValue(data), value = dataType.GetProperty("Value").GetValue(data);
+                    if(!dataType.GetGenericArguments()[0].IsValueType)
+                    {
+                        writer.WriteAttributeString("type", GetShortTypeName(key, typeDictionary));
+                    }
+                    WriteObjectXML(key, writer, typeDictionary);
+                    writer.WriteEndElement();
+                    writer.WriteStartElement("Value");
+                    if (!dataType.GetGenericArguments()[1].IsValueType)
+                    {
+                        writer.WriteAttributeString("type", GetShortTypeName(value, typeDictionary));
+                    }
+                    WriteObjectXML(value, writer, typeDictionary);
+                    writer.WriteEndElement();
+                }
                 else if (data is IXmlSerializable)
                 {
                     (data as IXmlSerializable).WriteXml(writer);
@@ -254,6 +272,10 @@ namespace RoyalXML
                         }
                         return toReturn;
                     }
+                    else if(type.IsGenericType && type.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
+                    {
+                        return Activator.CreateInstance(type, LoadObject(currentDocument.Element("Key"), type.GetGenericArguments()[0], typeDictionary), LoadObject(currentDocument.Element("Value"), type.GetGenericArguments()[1], typeDictionary));
+                    }
                     else
                     {
                         object toReturn = Activator.CreateInstance(type);
@@ -351,6 +373,19 @@ namespace RoyalXML
             public RootType(object root)
             {
                 Root = root;
+            }
+        }
+
+        private sealed class KeyValueBinding
+        {
+            public object Key;
+            public object Value;
+
+            public KeyValueBinding() { }
+            public KeyValueBinding(object key, object value)
+            {
+                Key = key;
+                Value = value;
             }
         }
     }
