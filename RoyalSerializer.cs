@@ -123,7 +123,7 @@ namespace RoyalXML
                         }
                         writer.WriteStartElement(field.Name);
                         object value = field.GetValue(data);
-                        if (!field.FieldType.IsValueType)
+                        if (!field.FieldType.IsValueType || Nullable.GetUnderlyingType(field.FieldType) != null)
                         {
                             writer.WriteAttributeString("type", GetShortTypeName(value, typeDictionary));
                         }
@@ -237,13 +237,17 @@ namespace RoyalXML
 
         private static object LoadObject(XElement currentDocument, Type fieldType, Dictionary<string, Type> typeDictionary)
         {
+            XAttribute attribute = currentDocument.Attribute("type");
+            if (attribute != null && attribute.Value == "null")
+            {
+                return null;
+            }
             if(IsTypeStringConvertable(fieldType) && !currentDocument.HasElements)
             {
                 return StringToValueType(currentDocument.Value, fieldType);
             }
             else
             {
-                XAttribute attribute = currentDocument.Attribute("type");
                 if (attribute != null && attribute.Value == "null")
                 {
                     return null;
