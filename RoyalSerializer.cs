@@ -13,7 +13,7 @@ namespace RoyalXML
     /// <summary>
     /// Provides methods for the serialization of objects to RoyalXML.
     /// </summary>
-    public class RoyalSerializer
+    internal class RoyalSerializer
     {
         /// <summary>
         /// Converts an object to RoyalXML format, preserving types, arrays, and collections.

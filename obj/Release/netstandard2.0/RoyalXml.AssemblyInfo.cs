@@ -12,7 +12,7 @@ using System;
 using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("Douglas Dwyer")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("RoyalXml is a simple, highly customizable XML serializer for .NET. Though it can " +
     "be configured in almost any way, the default serialization ruleset supports poly" +
     "morphism, multidimensional arrays, and collections.")]

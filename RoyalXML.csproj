@@ -2,6 +2,29 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>1.1.0.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Douglas Dwyer</Authors>
+    <Company>Douglas Dwyer</Company>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DouglasDwyer/RoyalXml</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageTags>c# csharp serialization xml polymorphism collections arrays</PackageTags>
+    <Description>RoyalXml is a simple, highly customizable XML serializer for .NET. Though it can be configured in almost any way, the default serialization ruleset supports polymorphism, multidimensional arrays, and collections.</Description>
+    <PackageId>DouglasDwyer.RoyalXml</PackageId>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\Projects\RoyalXML\RoyalXml\RoyalXml.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

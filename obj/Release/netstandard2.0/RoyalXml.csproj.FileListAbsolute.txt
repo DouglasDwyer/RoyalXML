@@ -1,0 +1,9 @@
+D:\Projects\RoyalXML\RoyalXml\bin\Release\netstandard2.0\RoyalXml.deps.json
+D:\Projects\RoyalXML\RoyalXml\bin\Release\netstandard2.0\RoyalXml.dll
+D:\Projects\RoyalXML\RoyalXml\bin\Release\netstandard2.0\RoyalXml.pdb
+D:\Projects\RoyalXML\RoyalXml\bin\Release\netstandard2.0\RoyalXml.xml
+D:\Projects\RoyalXML\RoyalXml\obj\Release\netstandard2.0\RoyalXml.AssemblyInfoInputs.cache
+D:\Projects\RoyalXML\RoyalXml\obj\Release\netstandard2.0\RoyalXml.AssemblyInfo.cs
+D:\Projects\RoyalXML\RoyalXml\obj\Release\netstandard2.0\RoyalXml.csproj.CoreCompileInputs.cache
+D:\Projects\RoyalXML\RoyalXml\obj\Release\netstandard2.0\RoyalXml.dll
+D:\Projects\RoyalXML\RoyalXml\obj\Release\netstandard2.0\RoyalXml.pdb

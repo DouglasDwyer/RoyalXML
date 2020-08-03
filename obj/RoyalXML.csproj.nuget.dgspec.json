@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\RoyalXML\\RoyalXML\\RoyalXML.csproj": {}
+    "D:\\Projects\\RoyalXML\\RoyalXml\\RoyalXml.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\RoyalXML\\RoyalXML\\RoyalXML.csproj": {
-      "version": "1.0.0",
+    "D:\\Projects\\RoyalXML\\RoyalXml\\RoyalXml.csproj": {
+      "version": "1.1.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\RoyalXML\\RoyalXML\\RoyalXML.csproj",
-        "projectName": "RoyalXML",
-        "projectPath": "D:\\Projects\\RoyalXML\\RoyalXML\\RoyalXML.csproj",
+        "projectUniqueName": "D:\\Projects\\RoyalXML\\RoyalXml\\RoyalXml.csproj",
+        "projectName": "DouglasDwyer.RoyalXml",
+        "projectPath": "D:\\Projects\\RoyalXML\\RoyalXml\\RoyalXml.csproj",
         "packagesPath": "C:\\Users\\Douglas\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\RoyalXML\\RoyalXML\\obj\\",
+        "outputPath": "D:\\Projects\\RoyalXML\\RoyalXml\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -27,7 +27,8 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "D:\\Projects\\BlazorFileReader\\src\\Blazor.FileReader\\bin\\Release\\netstandard2.0\\publish": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/DouglasDwyer/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {

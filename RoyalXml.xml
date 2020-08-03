@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RoyalXml</name>
+    </assembly>
+    <members>
+        <member name="T:DouglasDwyer.RoyalXml.RoyalSerializationRule">
+            <summary>
+            Represents a rule used during object serialization/deserialization, dictating how objects of a certain type (and potentially their derivatives) are converted to XML.
+            </summary>
+        </member>
+        <member name="P:DouglasDwyer.RoyalXml.RoyalSerializationRule.SupportedType">
+            <summary>
+            The type that this rule is meant to serialize. The type may be generic.
+            </summary>
+        </member>
+        <member name="M:DouglasDwyer.RoyalXml.RoyalSerializationRule.Serialize(System.Object,System.Xml.XmlWriter,DouglasDwyer.RoyalXml.RoyalXmlSerializer)">
+            <summary>
+            Serializes an object of type <see cref="P:DouglasDwyer.RoyalXml.RoyalSerializationRule.SupportedType"/>, converting it to XML.
+            </summary>
+            <param name="data">The object to serialize.</param>
+            <param name="writer">The <see cref="T:System.Xml.XmlWriter"/> to write data to.</param>
+            <param name="serializer">The serializer that is currently using this rule to perform serialization.</param>
+        </member>
+        <member name="M:DouglasDwyer.RoyalXml.RoyalSerializationRule.Deserialize(System.Xml.Linq.XElement,System.Type,DouglasDwyer.RoyalXml.RoyalXmlSerializer)">
+            <summary>
+            Deserializes an object of type <paramref name="type"/>, converting it from XML.
+            </summary>
+            <param name="node">The XML node which contains data about the object.</param>
+            <param name="type">The type of object to create. This object will be assignable from <see cref="P:DouglasDwyer.RoyalXml.RoyalSerializationRule.SupportedType"/>.</param>
+            <param name="serializer">The serializer that is currently using this rule to perform deserialization.</param>
+            <returns>The deserialized object.</returns>
+        </member>
+        <member name="M:DouglasDwyer.RoyalXml.RoyalSerializationRule.WriteObjectXml(System.Object,System.Xml.XmlWriter,DouglasDwyer.RoyalXml.RoyalXmlSerializer)">
+            <summary>
+            Converts an object to XML using the specified serializer and its ruleset. This should be called when it is necessary to serialize child objects.
+            </summary>
+            <param name="data">The child object to write.</param>
+            <param name="writer">The XML writer to use, currently pointing to the subnode that this object should write its data to.</param>
+            <param name="serializer">The serializer to use.</param>
+        </member>
+        <member name="M:DouglasDwyer.RoyalXml.RoyalSerializationRule.ReadObjectXml(System.Xml.Linq.XElement,System.Type,DouglasDwyer.RoyalXml.RoyalXmlSerializer)">
+            <summary>
+            Converts XML to an object using the specified serializer and its ruleset. This should be called when it is necessary to deserialize child objects.
+            </summary>
+            <param name="node">The node which contains the child object data.</param>
+            <param name="type">The type of the child object.</param>
+            <param name="serializer">The serializer to use.</param>
+            <returns>The deserialized child object.</returns>
+        </member>
+        <member name="T:DouglasDwyer.RoyalXml.RoyalXmlSerializer">
+            <summary>
+            Represents an extensible, customizable XML serializer.
+            </summary>
+        </member>
+        <member name="F:DouglasDwyer.RoyalXml.RoyalXmlSerializer.DefaultRuleset">
+            <summary>
+            The default ruleset to use during serialization if a ruleset is not specified in the <see cref="T:DouglasDwyer.RoyalXml.RoyalXmlSerializer"/> constructor.
+            </summary>
+        </member>
+        <member name="P:DouglasDwyer.RoyalXml.RoyalXmlSerializer.CurrentRuleset">
+            <summary>
+            The ruleset that this serializer is using.
+            </summary>
+        </member>
+        <member name="M:DouglasDwyer.RoyalXml.RoyalXmlSerializer.#ctor">
+            <summary>
+            Creates a new <see cref="T:DouglasDwyer.RoyalXml.RoyalXmlSerializer"/> instance with the default ruleset.
+            </summary>
+        </member>
+        <member name="M:DouglasDwyer.RoyalXml.RoyalXmlSerializer.#ctor(System.Collections.Generic.ICollection{DouglasDwyer.RoyalXml.RoyalSerializationRule})">
+            <summary>
+            Creates a new <see cref="T:DouglasDwyer.RoyalXml.RoyalXmlSerializer"/> instance with the specified ruleset.
+            </summary>
+            <param name="ruleset">A collection of rules to use during serialization.</param>
+        </member>
+        <member name="M:DouglasDwyer.RoyalXml.RoyalXmlSerializer.Serialize(System.Object)">
+            <summary>
+            Serializes an object to XML using the current ruleset.
+            </summary>
+            <param name="data">The object to convert to XML.</param>
+            <returns>The string representation of the object.</returns>
+        </member>
+        <member name="M:DouglasDwyer.RoyalXml.RoyalXmlSerializer.Deserialize(System.String)">
+            <summary>
+            Deserializes an object from XML using the current ruleset.
+            </summary>
+            <param name="xml">The XML to convert to an object.</param>
+            <returns>The deserialized object.</returns>
+        </member>
+        <member name="M:DouglasDwyer.RoyalXml.RoyalXmlSerializer.Deserialize``1(System.String)">
+            <summary>
+            Deserializes an object from XML using the current ruleset.
+            </summary>
+            <typeparam name="T">The type of object to return.</typeparam>
+            <param name="xml">The XML to convert to an object.</param>
+            <returns>The deserialized object.</returns>
+        </member>
+        <member name="M:DouglasDwyer.RoyalXml.RoyalXmlSerializer.CalculateBestRuleForType(System.Type)">
+            <summary>
+            Calculates the rule that should be used to serialize the specified type.
+            This method iterates over the type's inheritance hierarchy.
+            If the type exactly matches the supported type of a serialization rule, or its generic variant, that rule is returned.
+            If not, the method checks for matches between any interfaces that the type implements, and returns the first matching rule.
+            If it cannot find any such interfaces, it checks the generic definition of each interface, and attempts to match that.
+            If it cannot find any such interfaces, it proceeds to do the same matching checks with base classes, and base generic classes.
+            </summary>
+            <param name="type">The type to check for.</param>
+            <returns>The rule which best matches.</returns>
+        </member>
+        <member name="M:DouglasDwyer.RoyalXml.RoyalXmlSerializer.WriteObjectXml(System.Object,System.Xml.XmlWriter)">
+            <summary>
+            Calculates the best serilization rule uses it to convert the specified object to XML.
+            </summary>
+            <param name="data">The object to convert to XML.</param>
+            <param name="writer">The XML writer to use.</param>
+        </member>
+        <member name="M:DouglasDwyer.RoyalXml.RoyalXmlSerializer.ReadObjectXml(System.Xml.Linq.XElement,System.Type)">
+            <summary>
+            Calculates the best serialization rule for the specified type and uses it to convert the specified XML to an object.
+            </summary>
+            <param name="node">The XML node to convert to an object.</param>
+            <param name="type">The type of object to create.</param>
+            <returns>The deserialized object.</returns>
+        </member>
+        <member name="T:RoyalXML.RoyalSerializer">
+            <summary>
+            Provides methods for the serialization of objects to RoyalXML.
+            </summary>
+        </member>
+        <member name="M:RoyalXML.RoyalSerializer.ObjectToXML(System.Object)">
+            <summary>
+            Converts an object to RoyalXML format, preserving types, arrays, and collections.
+            </summary>
+            <param name="toSerialize">The object to serialize.</param>
+            <returns>The serialized data.</returns>
+        </member>
+        <member name="M:RoyalXML.RoyalSerializer.XMLToObject(System.String)">
+            <summary>
+            Converts RoyalXML to an object.
+            </summary>
+            <param name="xml">The XML to deserialize.</param>
+            <returns>The deserialized object.</returns>
+        </member>
+        <member name="M:RoyalXML.RoyalSerializer.XMLToObject``1(System.String)">
+            <summary>
+            Converts RoyalXML to an object.
+            </summary>
+            <typeparam name="T">The type to return.</typeparam>
+            <param name="xml">The XML to deserialize.</param>
+            <returns>The deserialized object.</returns>
+        </member>
+    </members>
+</doc>
