@@ -1,3 +1,5 @@
+![Nuget](https://img.shields.io/nuget/v/DouglasDwyer.RoyalXml)
+
 # RoyalXml
 RoyalXml is a simple XML serializer for .NET that supports polymorphism, multidimensional arrays, and collections.
 
