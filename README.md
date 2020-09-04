@@ -75,5 +75,6 @@ When a `RoyalXmlSerializer` is asked to serialize/deserialize a given type, it i
 + If the given type is generic, and a rule's type matches the generic definition, that rule is used
 + If one of the given type's interfaces matches a rule's type, that rule is used
 + If one of the given type's interfaces is generic, and a rule's type matches the generic definition, that rule is used
-+ For each of the given type's base types, if the base type matches a rule, then that rule is used. If the base type is generic, and the generic type definition matches a rule, then that rule is used
++ For each of the given type's base types, if the base type matches a rule, then that rule is used. If the base type is generic, and the generic type definition matches a rule, then that rule is used.
+
 These rules make RoyalXml quite powerful, as it is easy to customize or extend behavior to various classes.
