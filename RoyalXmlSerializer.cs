@@ -37,7 +37,6 @@ namespace DouglasDwyer.RoyalXml
             new ShortSerializationRule(),
             new UnsignedShortSerializationRule(),
             new StringSerializationRule(),
-            new ArraySerializationRule(),
             new ICollectionSerializationRule(),
             new IXmlSerializableSerializationRule(),
             new KeyValuePairSerializationRule(),
