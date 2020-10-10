@@ -24,9 +24,12 @@ namespace DouglasDwyer.RoyalXml
             new ByteSerializationRule(),
             new SignedByteSerializationRule(),
             new CharSerializationRule(),
+            new DateTimeSerializationRule(),
+            new DateTimeOffsetSerializationRule(),
             new DecimalSerializationRule(),
             new DoubleSerializationRule(),
             new FloatSerializationRule(),
+            new GuidSerializationRule(),
             new IntSerializationRule(),
             new UnsignedIntSerializationRule(),
             new LongSerializationRule(),
@@ -37,7 +40,8 @@ namespace DouglasDwyer.RoyalXml
             new ArraySerializationRule(),
             new ICollectionSerializationRule(),
             new IXmlSerializableSerializationRule(),
-            new KeyValuePairSerializationRule()
+            new KeyValuePairSerializationRule(),
+            new TimeSpanSerializationRule()
         };
 
         /// <summary>

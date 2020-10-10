@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\RoyalXML\\RoyalXml\\RoyalXml.csproj": {}
+    "D:\\Projects\\RoyalXml\\RoyalXml\\RoyalXml.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\RoyalXML\\RoyalXml\\RoyalXml.csproj": {
-      "version": "1.1.0",
+    "D:\\Projects\\RoyalXml\\RoyalXml\\RoyalXml.csproj": {
+      "version": "1.1.0.1",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\RoyalXML\\RoyalXml\\RoyalXml.csproj",
+        "projectUniqueName": "D:\\Projects\\RoyalXml\\RoyalXml\\RoyalXml.csproj",
         "projectName": "DouglasDwyer.RoyalXml",
-        "projectPath": "D:\\Projects\\RoyalXML\\RoyalXml\\RoyalXml.csproj",
+        "projectPath": "D:\\Projects\\RoyalXml\\RoyalXml\\RoyalXml.csproj",
         "packagesPath": "C:\\Users\\Douglas\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\RoyalXML\\RoyalXml\\obj\\",
+        "outputPath": "D:\\Projects\\RoyalXml\\RoyalXml\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

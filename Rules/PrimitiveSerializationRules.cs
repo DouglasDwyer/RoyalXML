@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Xml;
@@ -16,8 +17,9 @@ namespace DouglasDwyer.RoyalXml.Rules
             object toReturn = Activator.CreateInstance(type);
             foreach(XElement field in node.Elements())
             {
+                string typeString = field.Attribute("Type").Value;
                 type.GetField(field.Name.LocalName, BindingFlags.Public | BindingFlags.Instance)
-                    .SetValue(toReturn, ReadObjectXml(field, Type.GetType(field.Attribute("Type").Value), serializer));
+                    .SetValue(toReturn, typeString == "null" ? null : ReadObjectXml(field, Type.GetType(typeString), serializer));
             }
             return toReturn;
         }
@@ -101,6 +103,38 @@ namespace DouglasDwyer.RoyalXml.Rules
         }
     }
 
+    public class DateTimeSerializationRule : RoyalSerializationRule
+    {
+        public override Type SupportedType => typeof(DateTime);
+        private static readonly CultureInfo USCultureInfo = new CultureInfo("en-US", false);
+
+        public override object Deserialize(XElement node, Type type, RoyalXmlSerializer serializer)
+        {
+            return DateTime.Parse(node.Value, USCultureInfo);
+        }
+
+        public override void Serialize(object data, XmlWriter writer, RoyalXmlSerializer serializer)
+        {
+            writer.WriteString(((DateTime)data).ToString(USCultureInfo));
+        }
+    }
+
+    public class DateTimeOffsetSerializationRule : RoyalSerializationRule
+    {
+        public override Type SupportedType => typeof(DateTimeOffset);
+        private static readonly CultureInfo USCultureInfo = new CultureInfo("en-US", false);
+
+        public override object Deserialize(XElement node, Type type, RoyalXmlSerializer serializer)
+        {
+            return DateTimeOffset.Parse(node.Value, USCultureInfo);
+        }
+
+        public override void Serialize(object data, XmlWriter writer, RoyalXmlSerializer serializer)
+        {
+            writer.WriteString(((DateTimeOffset)data).ToString(USCultureInfo));
+        }
+    }
+
     public class DecimalSerializationRule : RoyalSerializationRule
     {
         public override Type SupportedType => typeof(decimal);
@@ -138,6 +172,21 @@ namespace DouglasDwyer.RoyalXml.Rules
         public override object Deserialize(XElement node, Type type, RoyalXmlSerializer serializer)
         {
             return float.Parse(node.Value);
+        }
+
+        public override void Serialize(object data, XmlWriter writer, RoyalXmlSerializer serializer)
+        {
+            writer.WriteString(data.ToString());
+        }
+    }
+
+    public class GuidSerializationRule : RoyalSerializationRule
+    {
+        public override Type SupportedType => typeof(Guid);
+
+        public override object Deserialize(XElement node, Type type, RoyalXmlSerializer serializer)
+        {
+            return Guid.Parse(node.Value);
         }
 
         public override void Serialize(object data, XmlWriter writer, RoyalXmlSerializer serializer)
@@ -243,6 +292,21 @@ namespace DouglasDwyer.RoyalXml.Rules
         public override object Deserialize(XElement node, Type type, RoyalXmlSerializer serializer)
         {
             return node.Value;
+        }
+
+        public override void Serialize(object data, XmlWriter writer, RoyalXmlSerializer serializer)
+        {
+            writer.WriteString(data.ToString());
+        }
+    }
+
+    public class TimeSpanSerializationRule : RoyalSerializationRule
+    {
+        public override Type SupportedType => typeof(TimeSpan);
+
+        public override object Deserialize(XElement node, Type type, RoyalXmlSerializer serializer)
+        {
+            return TimeSpan.Parse(node.Value);
         }
 
         public override void Serialize(object data, XmlWriter writer, RoyalXmlSerializer serializer)

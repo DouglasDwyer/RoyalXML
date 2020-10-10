@@ -2,13 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>DouglasDwyer.RoyalXml</id>
-    <version>1.1.0</version>
+    <version>1.1.0.1</version>
     <authors>Douglas Dwyer</authors>
     <owners>Douglas Dwyer</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="file">LICENSE</license>
     <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
     <description>RoyalXml is a simple, highly customizable XML serializer for .NET. Though it can be configured in almost any way, the default serialization ruleset supports polymorphism, multidimensional arrays, and collections.</description>
+    <releaseNotes>Added increased compatability with primitive types, including DateTimes, DateTimeOffsets, Guids, and TimeSpans. In addition, fixed a glitch with serializing objects with null fields.</releaseNotes>
     <tags>c# csharp serialization xml polymorphism collections arrays</tags>
     <repository type="Git" url="https://github.com/DouglasDwyer/RoyalXml" />
     <dependencies>

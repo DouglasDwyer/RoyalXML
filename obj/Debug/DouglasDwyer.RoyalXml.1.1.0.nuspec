@@ -16,8 +16,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="D:\Projects\RoyalXml\RoyalXml\bin\Release\netstandard2.0\RoyalXml.dll" target="lib\netstandard2.0\RoyalXml.dll" />
-    <file src="D:\Projects\RoyalXml\RoyalXml\bin\Release\netstandard2.0\RoyalXml.xml" target="lib\netstandard2.0\RoyalXml.xml" />
+    <file src="D:\Projects\RoyalXml\RoyalXml\bin\Debug\netstandard2.0\RoyalXml.dll" target="lib\netstandard2.0\RoyalXml.dll" />
     <file src="D:\Projects\RoyalXml\RoyalXml\LICENSE" target="LICENSE" />
   </files>
 </package>

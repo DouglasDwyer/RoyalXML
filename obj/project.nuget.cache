@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ItMgWNmgU4A0Ua+aiJdzm3PfJkHxiOuZr2s5RJrOcyDc4Kbdoe8JZ0dagwz6ViK/iDYzUh2COYnZtUf0KpzwNA==",
+  "dgSpecHash": "9UgD2VqKWkSD+gy1tHADALAjnYBfCCE/oAM/vTEt4HxCSm1FqRfCbDlkGDyuBRMXQaGkArxqq0lV5Tw9w9t0yg==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\RoyalXML\\RoyalXml\\RoyalXml.csproj",
+  "projectFilePath": "D:\\Projects\\RoyalXml\\RoyalXml\\RoyalXml.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

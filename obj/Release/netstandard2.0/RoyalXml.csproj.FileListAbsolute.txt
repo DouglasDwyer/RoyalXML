@@ -7,3 +7,4 @@ D:\Projects\RoyalXML\RoyalXml\obj\Release\netstandard2.0\RoyalXml.AssemblyInfo.c
 D:\Projects\RoyalXML\RoyalXml\obj\Release\netstandard2.0\RoyalXml.csproj.CoreCompileInputs.cache
 D:\Projects\RoyalXML\RoyalXml\obj\Release\netstandard2.0\RoyalXml.dll
 D:\Projects\RoyalXML\RoyalXml\obj\Release\netstandard2.0\RoyalXml.pdb
+D:\Projects\RoyalXml\RoyalXml\obj\Release\netstandard2.0\RoyalXml.csprojAssemblyReference.cache

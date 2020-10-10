@@ -5,5 +5,4 @@ D:\Projects\RoyalXML\RoyalXML\obj\Debug\netstandard2.0\RoyalXML.AssemblyInfoInpu
 D:\Projects\RoyalXML\RoyalXML\obj\Debug\netstandard2.0\RoyalXML.AssemblyInfo.cs
 D:\Projects\RoyalXML\RoyalXML\obj\Debug\netstandard2.0\RoyalXML.dll
 D:\Projects\RoyalXML\RoyalXML\obj\Debug\netstandard2.0\RoyalXML.pdb
-D:\Projects\RoyalXML\RoyalXML\obj\Debug\netstandard2.0\RoyalXML.csprojAssemblyReference.cache
 D:\Projects\RoyalXML\RoyalXML\obj\Debug\netstandard2.0\RoyalXML.csproj.CoreCompileInputs.cache
